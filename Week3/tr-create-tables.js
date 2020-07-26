@@ -17,8 +17,8 @@ async function seedData(){
 const accountTable = 
 `CREATE TABLE IF NOT EXIST account(
    account_number INT,
-   balance INT,
-   CONSTRAINT PK_account PRIMARY KEY(acccount_number)
+   balance DECIMAL,
+   CONSTRAINT PK_account PRIMARY KEY(account_number)
   )`;
   const accountChangesTable = 
 `CREATE TABLE IF NOT EXIST accountChanges(

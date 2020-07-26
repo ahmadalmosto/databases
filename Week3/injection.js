@@ -26,7 +26,7 @@ function getPopulation(Country, name, code, cb) {
   function getPopulation2(Country, name, code, cb) {
    
     connection.query(
-      `SELECT Population FROM ${Country} WHERE Name = '${name}' and code = ?`,[name,code],
+      `SELECT Population FROM ${Country} WHERE Name = '${name}' and code = ?`,[name],
       function(error, result) {
         if (error) cb(error);
         if (result.length == 0) cb(new Error("Not found"));
