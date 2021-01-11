@@ -1,50 +1,87 @@
-const mySql = require("mysql");
+const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "hyfuser",
-  password: "hyfpassword",
-  database: "meetup",
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "hyfuser",
+    password: "hyfpassword",
+    multipleStatements: true,
 });
-connection.connect(function (error) {
-  if (error) throw error;
-  console.log("connection succeed");
+
+db.connect((err) =>{
+    if(err){
+        throw err;
+    }
+    console.log('MySql Connected....');
 });
-connection.query("CREATE DATABASES meetup", function (error, result) {
-  if (error) {
-    console.log(error);
-  }
-  console.log("database created");
-});
-var createTables = [
-  "CREATE TABLE Invitee(invitee_no init,invitee_name text,invited_by text)",
-  "CREATE TABLE Room(room_no init , room_name text , floor_number init)",
-  "CREATE TABLE Meeting(meeting_no init , meeting_title text , starting_time datetime, end_time datetime, room_no init)",
-];
-createTables.forEach((query) => {
-  connection.query(query, function (err, result, field) {
-    if (err) throw err;
-    console.log("table created");
-  });
-});
-var tableQuery = [
-  "INSERT INTO Invitee VALUES(1,'Natasha','Hawkeye')",
-  "INSERT INTO Invitee VALUES(2,'John Wick','Clark kent')",
-  "INSERT INTO Invitee VALUES(3,'Peter Parker','Bruce Willes')",
-  "INSERT INTO Invitee VALUES(4,'Tony Stark','Steve Rogers')",
-  "INERT INTO Room VALUES(1,'Avengers meeting',4)",
-  "INERT INTO Room VALUES(2,'Avengers Friends',3)",
-  "INERT INTO Room VALUES(3,'Avengers planing room',5)",
-  "INERT INTO Room VALUES(4,'Avenges control room',6)",
-  "INSER INTO Meeting VALUES(1,'Avenger reunion','2019-12-11','2019-12-11',11)",
-  "INSER INTO Meeting VALUES(2,'Avenger help center','2019-12-12','2019-12-12',12)",
-  "INSER INTO Meeting VALUES(3,'Avengers','2019-12-13','2019-12-13',13)",
-  "INSER INTO Meeting VALUES(4,'Avengers world protector','2019-12-14','2019-12-14',14)",
-];
-tableQuery.forEach((query) => {
-  connection.query(query, function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-});
-connection.end();
+
+//create the database
+db.query('DROP DATABASE IF EXISTS meetup; CREATE DATABASE meetup; USE meetup;', (err) => {
+    if(err) throw err;
+    console.log('meetup database created.');
+})
+
+// create tables
+function createTables(){
+    db.query('CREATE TABLE Invitee(invitee_no INT, invitee_name VARCHAR(255), invited_by VARCHAR(255))', (err) => {
+        if(err) throw err;
+        console.log('tables created.');
+    })
+    db.query('CREATE TABLE Room(room_no INT, room_name VARCHAR(255), floor_number INT)', (err) => {
+        if(err) throw err;
+        console.log('tables created.');
+    })
+    db.query('CREATE TABLE Meeting(meeting_no INT, meeting_title VARCHAR(255), starting_time TIME, ending_time TIME, room_no INT)', (err) => {
+        if(err) throw err;
+        console.log('tables created.');
+    })
+}
+
+const Invitee = [
+    [1, "Ahmad al mosto", "osama ahmed"],
+    [2, "Ahmad al mosto", "osama ahmed"],
+    [3, "Ahmad al mosto", "osama ahmed"],
+    [4, "Ahmad al mosto", "osama ahmed"],
+    [5, "Ahmad al mosto", "osama ahmed"],
+]
+const Room = [
+    [1, "room abcde", 1],
+    [2, "room abcde", 3],
+    [3, "room abcde", 6],
+    [4, "room abcde", 8],
+    [5, "room abcde", 4],
+]
+
+const Meeting = [
+    [12, "abcdef", "10:00", "01:00", 1],
+    [42, "abcdef", "05:40", "00:00", 2],
+    [2354, "abcdef", "10:00", "00:00", 3],
+    [445, "abcdef", "16:00", "10:00", 4],
+    [545, "abcdef", "19:00", "15:00", 5],
+]
+
+//insert the data into the tables
+function insertData(Invitee, Room, Meeting){
+    Invitee.forEach(row => {
+        db.query(`INSERT INTO Invitee(invitee_no, invitee_name, invited_by) VALUES (?)`, [row], function(err) {
+            if (err) console.log(err);
+            else console.log("values inserted.");
+        });
+    });
+    Room.forEach(row => {
+        db.query(`INSERT INTO Room(room_no, room_name, floor_number) VALUES (?)`, [row], function(err) {
+            if (err) console.log(err);
+            else console.log("values inserted.");
+        });
+    });
+    Meeting.forEach(row => {
+        db.query(`INSERT INTO Meeting(meeting_no, meeting_title, starting_time, ending_time, room_no) VALUES (?)`, [row], function(err) {
+            if (err) console.log(err);
+            else console.log("values inserted.");
+        });
+    });
+}
+
+createTables();
+insertData(Invitee, Room, Meeting);
+
+db.end();
