@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 });
 const execQuery = util.promisify(connection.query.bind(connection));
 async function seedDataResearch() {
-  const researchPaper = `CREATE TABLE IF NOT EXITS Research_paper(
+  const researchPaper = `CREATE TABLE IF NOT EXISTS Research_paper(
         paper_id INT,
         paper_title VARCHAR(50),
         conference VARCHAR(50),
@@ -19,7 +19,7 @@ async function seedDataResearch() {
       )
       `;
   const AuthorPaper = `
-      CREATE TABLE IF NOT EXIST ResearchAuthor(
+      CREATE TABLE IF NOT EXISTS ResearchAuthor(
         paper_id INT,
         author_no INT,
         FOREIGN KEY(author_no) REFERENCES authors(author_no),
@@ -28,7 +28,7 @@ async function seedDataResearch() {
       `;
   connection.connect();
   try {
-    await execQuery(create_table);
+    await execQuery(researchPaper);
     await execQuery(AuthorPaper);
     await Promise.all(
       researchPaper.map((paper) =>

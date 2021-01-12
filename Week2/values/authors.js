@@ -14,7 +14,7 @@ const authors = [{
     date_of_birth: '1992-01-12',
     h_index: 12,
     gender: 'f',
-    collaborator: 102,
+    collaborator: 1,
 },
 {
     author_no: '3',
@@ -23,7 +23,7 @@ const authors = [{
     date_of_birth: '1979-05-24',
     h_index: 13,
     gender: 'm',
-    collaborator: 103,
+    collaborator: 2,
 },
 {
     author_no: '4',
@@ -32,7 +32,7 @@ const authors = [{
     date_of_birth: '1984-04-09',
     h_index: 14,
     gender: 'm',
-    collaborator: 104,
+    collaborator: 3,
 },
 {
     author_no: '5',
@@ -41,7 +41,7 @@ const authors = [{
     date_of_birth: '1988-10-21',
     h_index: 15,
     gender: 'm',
-    collaborator: 105,
+    collaborator: 4,
 },
 {
     author_no: '6',
@@ -50,7 +50,7 @@ const authors = [{
     date_of_birth: '1988-10-21',
     h_index: 16,
     gender: 'm',
-    collaborator: 106,
+    collaborator: 5,
 },
 {
     author_no: '7',
@@ -59,7 +59,7 @@ const authors = [{
     date_of_birth: '1984-07-27',
     h_index: 17,
     gender: 'm',
-    collaborator: 107,
+    collaborator: 6,
 },
 {
     author_no: '8',
@@ -68,7 +68,7 @@ const authors = [{
     date_of_birth: '1989-04-04',
     h_index: 18,
     gender: 'm',
-    collaborator: 108,
+    collaborator: 7,
 },
 {
     author_no: '9',
@@ -77,7 +77,7 @@ const authors = [{
     date_of_birth: '1980-06-10',
     h_index: 19,
     gender: 'm',
-    collaborator: 109,
+    collaborator: 8,
 },
 {
     author_no: '10',
@@ -86,7 +86,7 @@ const authors = [{
     date_of_birth: '1983-04-17',
     h_index: 20,
     gender: 'm',
-    collaborator: 202,
+    collaborator: 9,
 },
 {
     author_no: '11',
@@ -95,16 +95,16 @@ const authors = [{
     date_of_birth: '1982-09-14',
     h_index: 21,
     gender: 'f',
-    collaborator: 203,
+    collaborator: 10,
 },
 {
     author_no: '12',
     author_name: 'Malcolm Gladwel',
     university: ' University of Toronto',
-    date_of_birth: '1986-02-29',
+    date_of_birth: '1986-02-27',
     h_index: 22,
     gender: 'm',
-    collaborator: 204,
+    collaborator: 11,
 },
 {
     author_no: '13',
@@ -113,7 +113,7 @@ const authors = [{
     date_of_birth: '1988-01-11',
     h_index: 23,
     gender: 'f',
-    collaborator: 205,
+    collaborator: 12,
 },
 {
     author_no: '14',
@@ -122,7 +122,7 @@ const authors = [{
     date_of_birth: '1986-04-20',
     h_index: 24,
     gender: 'm',
-    collaborator: 206,
+    collaborator: 13,
 },
 {
     author_no: '15',
@@ -131,7 +131,7 @@ const authors = [{
     date_of_birth: '1982-09-14',
     h_index: 25,
     gender: 'm',
-    collaborator: 207,
+    collaborator: 14,
 },
 ]
 module.exports = authors;

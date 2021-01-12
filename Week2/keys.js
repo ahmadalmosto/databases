@@ -12,13 +12,13 @@ const connection = mysql.createConnection({
 const execQuery = util.promisify(connection.query.bind(connection))
 async function seedData() {
   const createTable =
-    `CREATE TABLE IF NOT EXIST Authors(
+    `CREATE TABLE IF NOT EXISTS Authors(
     author_no INT,
     author_name VARCHAR(50),
     university VARCHAR(50),
     date_of_birth DATETIME,
     h_index INT,
-    gender EMUM('m','f'),
+    gender ENUM('m','f'),
     CONSTRAINT PK_Author PRIMARY KEY(author_no)
   )`;
 
