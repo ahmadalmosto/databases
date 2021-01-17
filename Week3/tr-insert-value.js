@@ -6,12 +6,13 @@ const connection = mysql.createConnection({
   password: '',
   database: 'userdb',
   multipleStatements: true
-});
+}); 
 connection.connect(function(error){
     if(error) throw error;
     console.log('connection SUCCEED')
     
 });
+//https://stackoverflow.com/questions/54730641/node-js-how-to-apply-util-promisify-to-mysql-pool-in-its-simplest-way
 const execQuery = util.promisify(connection.query.bind(connection));
 async function inserData(){
 const use_table1 = `USE  account`
@@ -30,6 +31,7 @@ const tableQuery2 = [
     "INSERT INTO accountChanges VALUES(13 , 103 , 2000 , '2009-12-11' , 'Jack')",
     "INSERT INTO accountChanges VALUES(14 , 104 ,4000 , '2001-09-03', 'Lionel')",
 ];
+//https://codeburst.io/node-js-mysql-and-async-await-6fb25b01b628
 try{
     for(let i in tableQuery1){
         await execQuery('INSERT INTO account SET ?',tableQuery1[i])

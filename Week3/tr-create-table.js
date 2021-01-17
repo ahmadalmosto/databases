@@ -6,12 +6,13 @@ const connection = mysql.createConnection({
   password: '',
   database: 'userdb',
   multipleStatements: true
-});
+}); 
 connection.connect(function(error){
     if(error) throw error;
     console.log('connection SUCCEED')
     
 });
+//https://stackoverflow.com/questions/54730641/node-js-how-to-apply-util-promisify-to-mysql-pool-in-its-simplest-way
 const execQuery = util.promisify(connection.query.bind(connection));
 async function seedData(){
 const accountTable = 
@@ -29,7 +30,8 @@ const accountTable =
     remark VARCHAR(50)
   )`;
   const AddforeignKey = `ALTER TABLE accountChangesTable ADD FOREIGN KEY(account_number) REFERENCES account(account_number)`;
-try{
+//https://codeburst.io/node-js-mysql-and-async-await-6fb25b01b628
+  try{
     await Promise.all[execQuery(accountTable),execQuery(accountChangesTable),
     execQuery(AddforeignKey)];
 } catch(error){
